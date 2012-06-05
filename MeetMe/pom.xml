@@ -172,6 +172,25 @@
          <version>1.0.0.CR4</version>
          <scope>test</scope>               
       </dependency>
+      
+      <dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.19</version>
+	  </dependency>
+	  
+	  <dependency>
+        <groupId>org.jboss.seam.security</groupId>
+        <artifactId>seam-security</artifactId>
+        <version>3.1.0.Final</version>
+        <scope>compile</scope>
+      </dependency>
+      
+      <dependency>
+      	 <groupId>org.jboss.seam.faces</groupId>
+      	 <artifactId>seam-faces</artifactId>
+      	 <version>3.1.0.Final</version>
+      </dependency>
 
    </dependencies>
 
