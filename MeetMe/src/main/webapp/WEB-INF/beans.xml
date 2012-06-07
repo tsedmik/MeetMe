@@ -6,4 +6,10 @@
    xsi:schemaLocation="
         http://java.sun.com/xml/ns/javaee 
         http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
+        
+        <interceptors>
+            <class>org.jboss.solder.exception.control.ExceptionHandledInterceptor</class>
+            <class>org.jboss.seam.faces.context.conversation.ConversationBoundaryInterceptor</class>
+            <class>org.jboss.seam.security.SecurityInterceptor</class>
+        </interceptors>
 </beans>
