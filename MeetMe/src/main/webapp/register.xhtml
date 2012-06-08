@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s="http://jboss.org/seam/faces"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+
+		<h1>#{msg['registration.heading']}</h1>
+
+		<h:messages />
+
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{msg['person.name']}" for="name" />
+				<h:inputText id="name" value="#{newPerson.name}" />
+				<h:outputLabel value="#{msg['person.username']}" for="username" />
+				<h:inputText id="username" value="#{newPerson.username}" />
+				<h:outputLabel value="#{msg['person.email']}" for="email" />
+				<h:inputText id="email" value="#{newPerson.email}" />
+				<h:outputLabel value="#{msg['person.password']}" for="password" />
+				<h:inputSecret id="password" value="#{newPerson.password}" />
+				<h:outputLabel value="#{msg['person.password.again']}"
+					for="password" />
+				<h:inputSecret id="passwordRepeat" />
+			</h:panelGrid>
+			<h:commandButton action="#{registerAction.create}"
+				value="#{msg['person.new.registration.register']}" />
+
+			<s:validateForm validatorId="passwordsMatchValidator" />
+			<s:validateForm validatorId="usernameUniquenessValidator"/>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="sidebar">
+		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}" /></li></ul>
+	</ui:define>
+</ui:composition>

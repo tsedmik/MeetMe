@@ -5,10 +5,16 @@
 	xsi:schemaLocation="         http://java.sun.com/xml/ns/javaee         http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
 	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>cs</supported-locale>
+		</locale-config>
+		
 		<resource-bundle>
-			<base-name>cz.muni.fi.pv243.meetme.viewconfig.messages_cs</base-name>
+			<base-name>cz.muni.fi.pv243.meetme.viewconfig.messages</base-name>
 			<var>msg</var>
 		</resource-bundle>
+
 	</application>
 
 	<navigation-rule>

@@ -46,42 +46,30 @@
 
 	<dependencies>
 
-		<!-- Import the EJB API, we use provided scope as the API is included in 
-			JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.transaction</groupId>
 			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the JSF API, we use provided scope as the API is included in 
-			JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
 			<artifactId>jboss-jsf-api_2.0_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the Servlet API, we use provided scope as the API is included 
-			in JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.servlet</groupId>
 			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the JAXB API, we use provided scope as the API is included 
-			in JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.xml.bind</groupId>
 			<artifactId>jboss-jaxb-api_2.2_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Now we declare any tools needed -->
-
-		<!-- Annotation processor to generate the JPA 2.0 metamodel classes for 
-			typesafe criteria queries -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
@@ -89,7 +77,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Needed for running tests (you may also use TestNG) -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -97,9 +84,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Optional, but highly recommended -->
-		<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) 
-			JPA from JUnit/TestNG -->
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
@@ -114,103 +98,94 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.jboss.spec.javax.ws.rs</groupId>
+			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
-     <dependency>
-         <groupId>javax.enterprise</groupId>
-         <artifactId>cdi-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-      
-      <dependency>
-         <groupId>org.jboss.spec.javax.faces</groupId>
-         <artifactId>jboss-jsf-api_2.0_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
-      <dependency>
-         <groupId>org.jboss.spec.javax.annotation</groupId>
-         <artifactId>jboss-annotations-api_1.1_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
+		<dependency>
+			<groupId>org.jboss.solder</groupId>
+			<artifactId>solder-impl</artifactId>
+			<version>3.1.0.Final</version>
+		</dependency>
 
-      <dependency>
-         <groupId>org.jboss.spec.javax.ws.rs</groupId>
-         <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
+		<dependency>
+			<groupId>org.jboss.solder</groupId>
+			<artifactId>solder-tooling</artifactId>
+			<scope>provided</scope>
+			<version>3.1.0.Final</version>
+		</dependency>
 
-      <dependency>
-         <groupId>org.hibernate.javax.persistence</groupId>
-         <artifactId>hibernate-jpa-2.0-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
+		<dependency>
+			<groupId>org.jboss.seam.faces</groupId>
+			<artifactId>seam-faces</artifactId>
+			<version>3.1.0.Final</version>
+		</dependency>
 
-      <dependency>
-         <groupId>org.jboss.spec.javax.ejb</groupId>
-         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
-         <scope>provided</scope>
-      </dependency>
+		<dependency>
+			<groupId>org.jboss.seam.international</groupId>
+			<artifactId>seam-international</artifactId>
+			<version>3.1.0.Final</version>
+		</dependency>
 
-      <dependency>
-         <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-validator</artifactId>
-         <version>4.2.0.Final</version>
-         <scope>provided</scope>
-         <exclusions>
-            <exclusion>
-               <groupId>org.slf4j</groupId>
-               <artifactId>slf4j-api</artifactId>
-            </exclusion>
-         </exclusions>
-      </dependency>
+		<dependency>
+			<groupId>org.jboss.seam.persistence</groupId>
+			<artifactId>seam-persistence</artifactId>
+			<version>3.1.0.Final</version>
+		</dependency>
 
-      <dependency>
-         <groupId>org.jboss.solder</groupId>
-         <artifactId>solder-impl</artifactId>
-         <version>3.1.0.Final</version>
-      </dependency> 
- 
-      <dependency>
-         <groupId>org.jboss.solder</groupId>
-         <artifactId>solder-tooling</artifactId>
-         <scope>provided</scope>
-         <version>3.1.0.Final</version>
-      </dependency> 
-       
-      <dependency>
-      	 <groupId>org.jboss.seam.faces</groupId>
-      	 <artifactId>seam-faces</artifactId>
-      	 <version>3.1.0.Final</version>
-      </dependency>
-      
-      <dependency>
-      	 <groupId>org.jboss.seam.international</groupId>
-      	 <artifactId>seam-international</artifactId>
-      	 <version>3.1.0.Final</version>
-      </dependency>     
-            
-      <dependency>
-      	<groupId>org.jboss.seam.persistence</groupId>
-      	<artifactId>seam-persistence</artifactId>
-      	<version>3.1.0.Final</version>
-      </dependency>
-      
-      <dependency>
-        <groupId>org.jboss.seam.security</groupId>
-        <artifactId>seam-security</artifactId>
-        <scope>compile</scope>
-        <version>3.1.0.Final</version>
-      </dependency>
-      
-      <dependency>
-         <groupId>com.ocpsoft</groupId>
-         <artifactId>prettyfaces-jsf2</artifactId>
-         <version>3.3.3</version>
-      </dependency>
+		<dependency>
+			<groupId>org.jboss.seam.security</groupId>
+			<artifactId>seam-security</artifactId>
+			<scope>compile</scope>
+			<version>3.1.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ocpsoft</groupId>
+			<artifactId>prettyfaces-jsf2</artifactId>
+			<version>3.3.3</version>
+		</dependency>
+		
+	
 
 	</dependencies>
 
