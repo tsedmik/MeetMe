@@ -22,18 +22,23 @@ public class PersonAuthenticator extends BaseAuthenticator {
 	@Override
 	public void authenticate() {
 		try {
-	         Person person = (Person)em.createQuery("select m from Person m where m.username = :username and m.password = :password")
-	         .setParameter("username", credentials.getUsername())
-	         .setParameter("password", ((PasswordCredential)credentials.getCredential()).getValue()).getSingleResult();
-	         
-	         setStatus(AuthenticationStatus.SUCCESS);
-	         setUser(person);
-	      }
-	      catch(NoResultException x) {
-	         setStatus(AuthenticationStatus.FAILURE);
-	      }
-		
+			
+			Person person = (Person) em
+					.createQuery(
+							"select m from Person m where m.username = :username and m.password = :password")
+					.setParameter("username", credentials.getUsername())
+					.setParameter("password", HashPassword.byteArrayToHexString(HashPassword.computeHash(((PasswordCredential) credentials.getCredential()).getValue())))
+					.getSingleResult();
+
+			setStatus(AuthenticationStatus.SUCCESS);
+			setUser(person);
+		} catch (NoResultException x) {
+			setStatus(AuthenticationStatus.FAILURE);
+		} catch (Exception e) {
+			//TODO logovani
+			setStatus(AuthenticationStatus.FAILURE);
+		}
+
 	}
-	
 
 }
