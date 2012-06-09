@@ -18,5 +18,4 @@ public class PersonLogging {
 	public void personLoggedIn(@Observes LoggedInEvent event, Logger log) {
 		log.info("User " + event.getUser().getId() + " logged in.");
     }
-
 }

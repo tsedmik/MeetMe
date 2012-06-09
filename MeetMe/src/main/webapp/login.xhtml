@@ -7,22 +7,21 @@
 	template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h1>Login</h1>
+		<h1>#{msg['login.heading']}</h1>
+		<h:messages/>
 		<h:form>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="2" rendered="#{!identity.loggedIn}">
 				<h:outputLabel value="#{msg['person.username']}" for="username" />
 				<h:inputText id="username" value="#{credentials.username}" />
 
 				<h:outputLabel value="#{msg['person.password']}" for="password" />
 				<h:inputSecret id="password" value="#{credentials.password}" />
 			</h:panelGrid>
-			<h:commandButton action="#{identity.login}" value="#{msg['login.login']}" />
+			<h:commandButton action="#{identity.login}" value="#{msg['login.login']}" rendered="#{!identity.loggedIn}"/>
 		</h:form>
 	</ui:define>
 
 	<ui:define name="sidebar">
-		<ul>
-			<li><h:link outcome="index" value="#{msg['registration.backToIndex']}" /></li>
-		</ul>
+		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li></ul>
 	</ui:define>
 </ui:composition>

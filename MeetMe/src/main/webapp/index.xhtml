@@ -6,11 +6,11 @@
 	template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h1>#{msg['index.heading']}</h1>
 		<h:messages />
+		<!--
 		<h2>TEST - Uzivatele naseho systemu</h2>
 		<h:form>
-
+  
 			<ul>
 				<h:dataTable value="#{allPersons}" var="_person">
 					<h:column>
@@ -19,12 +19,13 @@
 				</h:dataTable>
 			</ul>
 		</h:form>
+		-->
 	</ui:define>
 	<ui:define name="sidebar">
+		<h3>#{msg['index.heading']}</h3>
 		<ul>
-			<li><h:link outcome="login" value="#{msg['index.login']}" /></li>
-			<li><h:link outcome="register"
-					value="#{msg['index.newRegistration']}" /></li>
+		<h:panelGroup rendered="#{!identity.loggedIn}"><li><h:link outcome="login" value="#{msg['index.login']}"/></li></h:panelGroup>
+		<li><h:link outcome="register" value="#{msg['index.newRegistration']}"/></li>
 		</ul>
 	</ui:define>
 </ui:composition>

@@ -9,7 +9,7 @@
 			<default-locale>en</default-locale>
 			<supported-locale>cs</supported-locale>
 		</locale-config>
-		
+
 		<resource-bundle>
 			<base-name>cz.muni.fi.pv243.meetme.viewconfig.messages</base-name>
 			<var>msg</var>
@@ -22,6 +22,14 @@
 		<navigation-case>
 			<from-action>#{registerAction.create}</from-action>
 			<if>#{true}</if>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<if>#{identity.loggedIn}</if>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>

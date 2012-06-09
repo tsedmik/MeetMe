@@ -15,9 +15,16 @@
 			<div id="sidebar">
 				<ui:insert name="sidebar" />
 			</div>
+			<div>
+				<h:panelGroup rendered="#{identity.loggedIn}">
+					<h:form>
+               			#{msg.LoggedIn} <b>#{identity.user.id}</b>&nbsp;
+               			<h:commandButton action="#{identity.logout}" value="#{msg.Logout}" />
+                	</h:form>
+				</h:panelGroup>
+			</div>
 			<ui:insert name="content" />
 		</div>
-		
 		<div id="footer">
 			<ui:insert name="footer" />
 		</div>
