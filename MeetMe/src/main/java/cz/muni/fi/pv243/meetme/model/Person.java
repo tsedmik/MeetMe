@@ -22,18 +22,18 @@ public class Person implements User {
 
 	@Id
 	@NotNull
-	@Size(min = 4, max = 25)
-	@Pattern(regexp = "[A-Za-z0-9]+", message = "must contain letters and numbers")
+	@Size(min = 4, max = 25, message = "username - size must be between 4 and 25")
+	@Pattern(regexp = "[A-Za-z0-9]+", message = "username - must contain letters and numbers")
 	private String username;
 
 	@NotNull
-	@Size(min = 4, max = 50)
+	@Size(min = 4, max = 50, message = "password - size must be between 4 and 50")
 	private String password;
 
-	@Pattern(regexp = "([_A-Za-z0-9-]+)(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})", message = "must be a correct email address")
+	@Pattern(regexp = "([_A-Za-z0-9-]+)(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})", message = "email - must be a correct email address")
 	private String email;
 
-	@Size(max = 100)
+	@Size(max = 100, message = "name - size must be between 0 and 100")
 	private String name;
 
 	public Person() {

@@ -7,25 +7,21 @@
 
 	<ui:define name="content">
 		<h:messages />
-		<!--
-		<h2>TEST - Uzivatele naseho systemu</h2>
-		<h:form>
-  
-			<ul>
-				<h:dataTable value="#{allPersons}" var="_person">
-					<h:column>
-						<li>#{_person.id}, #{_person.password}</li>
-					</h:column>
-				</h:dataTable>
-			</ul>
-		</h:form>
-		-->
+		<h1>#{msg['index.heading']}</h1>
+		<p>#{msg['index.welcome']}</p>
 	</ui:define>
 	<ui:define name="sidebar">
-		<h3>#{msg['index.heading']}</h3>
+		<h:panelGroup rendered="#{!identity.loggedIn}">
+			<ul>
+				<li><h:link outcome="login" value="#{msg['index.login']}" /></li>
+				<li><h:link outcome="register" value="#{msg['index.newRegistration']}" /></li>
+			</ul>
+		</h:panelGroup>
+
 		<ul>
-		<h:panelGroup rendered="#{!identity.loggedIn}"><li><h:link outcome="login" value="#{msg['index.login']}"/></li></h:panelGroup>
-		<li><h:link outcome="register" value="#{msg['index.newRegistration']}"/></li>
+			<li><b><h:link outcome="eventedit" value="#{msg['index.newEvent']}" /></b></li>
+			<li><b><h:link outcome="participate" value="#{msg['index.participate']}" /></b></li>
 		</ul>
+
 	</ui:define>
 </ui:composition>

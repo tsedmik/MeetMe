@@ -33,11 +33,10 @@ public class PersonAuthenticator extends BaseAuthenticator {
 			setStatus(AuthenticationStatus.SUCCESS);
 			setUser(person);
 		} catch (NoResultException x) {
-			//TODO logovani
-			//TODO zobrazeni zpravy pri neuspechu
+			//TODO logovani neuspesneho pokusu o prihlaseni
 			setStatus(AuthenticationStatus.FAILURE);
 		} catch (Exception e) {
-			//TODO logovani
+			//TODO logovani chyby prevodu hesla
 			setStatus(AuthenticationStatus.FAILURE);
 		}
 
