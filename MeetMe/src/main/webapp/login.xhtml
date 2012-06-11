@@ -9,19 +9,24 @@
 	<ui:define name="content">
 		<h1>#{msg['login.heading']}</h1>
 		<h:messages/>
-		<h:form>
-			<h:panelGrid columns="2" rendered="#{!identity.loggedIn}">
+		<h:form rendered="#{!identity.loggedIn}">
+			<h:panelGrid columns="2">
 				<h:outputLabel value="#{msg['person.username']}" for="username" />
 				<h:inputText id="username" value="#{credentials.username}" />
 
 				<h:outputLabel value="#{msg['person.password']}" for="password" />
 				<h:inputSecret id="password" value="#{credentials.password}" />
 			</h:panelGrid>
-			<h:commandButton action="#{identity.login}" value="#{msg['login.login']}" rendered="#{!identity.loggedIn}"/>
+			<h:commandButton action="#{identity.login}" value="#{msg['login.login']}"/>
 		</h:form>
 	</ui:define>
 
 	<ui:define name="sidebar">
+		<h:panelGroup rendered="#{!identity.loggedIn}">
+			<ul>
+				<li><h:link outcome="register" value="#{msg['index.newRegistration']}" /></li>
+			</ul>
+		</h:panelGroup>
 		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li></ul>
 	</ui:define>
 </ui:composition>

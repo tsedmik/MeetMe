@@ -25,13 +25,13 @@ public class Event {
 	private long id;
 	
 	@NotNull
-	@Size(min = 4, max = 100)
+	@Size(min = 4, max = 100, message = "name - size must be between 4 and 100")
 	private String name;
 	
-	@Size(max = 1000)
+	@Size(max = 1000, message = "description - size must be max 100")
 	private String description;
 	
-	@Size(max = 200)
+	@Size(max = 200, message = "description - size must be max 200")
 	private String place;
 	
 	@ManyToOne

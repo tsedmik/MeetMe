@@ -20,6 +20,9 @@
 
 		<ul>
 			<li><b><h:link outcome="eventedit" value="#{msg['index.newEvent']}" /></b></li>
+			<h:panelGroup rendered="#{identity.loggedIn}">
+				<li><h:link outcome="eventslist" value="#{msg['eventslist.heading']}" /></li>
+			</h:panelGroup>
 			<li><b><h:link outcome="participate" value="#{msg['index.participate']}" /></b></li>
 		</ul>
 

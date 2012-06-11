@@ -8,10 +8,54 @@
 
 	<ui:define name="content">
 		<h1>#{msg['eventedit.heading']}</h1>
+		
 		<h:messages/>
+		
+		<!-- FORM FOR AUTHENTICATED USERS -->
+		<h:form rendered="#{identity.loggedIn}">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{msg['event.name']}" for="name" />
+				<h:inputText id="name" value="#{newEvent.name}" />
+				<h:outputLabel value="#{msg['event.description']}" for="description" />
+				<h:inputText id="description" value="#{newEvent.description}" />
+				<h:outputLabel value="#{msg['event.place']}" for="place" />
+				<h:inputText id="place" value="#{newEvent.place}" />
+				<h:selectBooleanCheckbox value="#{newEvent.answerMaybe}" for="answerMaybe"/>
+				<h:outputText id="answerMaybe" value="#{msg['event.answerMaybe']}"/>
+				<h:selectBooleanCheckbox value="#{newEvent.emailNotify}" for="emailNotify"/>
+				<h:outputText id="emailNotify" value="#{msg['event.emailNotify']}"/>
+				<h:selectBooleanCheckbox value="#{newEvent.secretEvent}" for="secretEvent"/>
+				<h:outputText id="secretEvent" value="#{msg['event.secretEvent']}"/>	
+			</h:panelGrid>
+			<h:commandButton action="#{createEventAction.create()}"
+				value="#{msg['event.createEvent']}" />
+		</h:form>
+		
+		<!-- FORM FOR EVERYONE ELSE -->
+		<h:form rendered="#{!identity.loggedIn}">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{msg['event.name']}" for="name" />
+				<h:inputText id="name" value="#{newEvent.name}" />
+				<h:outputLabel value="#{msg['event.description']}" for="description" />
+				<h:inputText id="description" value="#{newEvent.description}" />
+				<h:outputLabel value="#{msg['event.place']}" for="place" />
+				<h:inputText id="place" value="#{newEvent.place}" />
+				<h:selectBooleanCheckbox value="#{newEvent.answerMaybe}" for="answerMaybe"/>
+				<h:outputText id="answerMaybe" value="#{msg['event.answerMaybe']}"/>	
+			</h:panelGrid>
+			<h:commandButton action="#{createEventAction.createNoAuth()}" 
+				value="#{msg['event.createEvent']}" />
+		</h:form>
+		
 	</ui:define>
 
 	<ui:define name="sidebar">
+		<h:panelGroup rendered="#{!identity.loggedIn}">
+			<ul>
+				<li><h:link outcome="login" value="#{msg['index.login']}" /></li>
+				<li><h:link outcome="register" value="#{msg['index.newRegistration']}" /></li>
+			</ul>
+		</h:panelGroup>
 		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li></ul>
 	</ui:define>
 </ui:composition>

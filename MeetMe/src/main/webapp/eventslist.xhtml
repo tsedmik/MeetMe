@@ -7,17 +7,15 @@
 	template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h1>#{msg['participate.heading']}</h1>
+		<h1>#{msg['eventslist.heading']}</h1>
+		
 		<h:messages/>
+		
+		<h2>#{msg['eventslist.listOfEvents']}</h2>
+					
 	</ui:define>
 
 	<ui:define name="sidebar">
-		<h:panelGroup rendered="#{!identity.loggedIn}">
-			<ul>
-				<li><h:link outcome="login" value="#{msg['index.login']}" /></li>
-				<li><h:link outcome="register" value="#{msg['index.newRegistration']}" /></li>
-			</ul>
-		</h:panelGroup>
 		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li></ul>
 	</ui:define>
 </ui:composition>
