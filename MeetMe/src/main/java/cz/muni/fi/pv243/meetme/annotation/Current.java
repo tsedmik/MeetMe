@@ -1,4 +1,4 @@
-package cz.muni.fi.pv243.meetme.action;
+package cz.muni.fi.pv243.meetme.annotation;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

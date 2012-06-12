@@ -11,8 +11,9 @@
 		
 		<h:messages/>
 		
-		<!-- FORM FOR AUTHENTICATED USERS -->
-		<h:form rendered="#{identity.loggedIn}">
+		<h:form id="form">
+			
+			<h3>#{msg['eventedit.basicSettings']}</h3>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="#{msg['event.name']}" for="name" />
 				<h:inputText id="name" value="#{newEvent.name}" />
@@ -22,31 +23,63 @@
 				<h:inputText id="place" value="#{newEvent.place}" />
 				<h:selectBooleanCheckbox value="#{newEvent.answerMaybe}" for="answerMaybe"/>
 				<h:outputText id="answerMaybe" value="#{msg['event.answerMaybe']}"/>
-				<h:selectBooleanCheckbox value="#{newEvent.emailNotify}" for="emailNotify"/>
-				<h:outputText id="emailNotify" value="#{msg['event.emailNotify']}"/>
-				<h:selectBooleanCheckbox value="#{newEvent.secretEvent}" for="secretEvent"/>
-				<h:outputText id="secretEvent" value="#{msg['event.secretEvent']}"/>	
+				<h:selectBooleanCheckbox value="#{newEvent.emailNotify}" for="emailNotify" rendered="#{identity.loggedIn}"/>
+				<h:outputText id="emailNotify" value="#{msg['event.emailNotify']}" rendered="#{identity.loggedIn}"/>	
 			</h:panelGrid>
-			<h:commandButton action="#{createEventAction.create()}"
-				value="#{msg['event.createEvent']}" />
-		</h:form>
-		
-		<!-- FORM FOR EVERYONE ELSE -->
-		<h:form rendered="#{!identity.loggedIn}">
-			<h:panelGrid columns="2">
-				<h:outputLabel value="#{msg['event.name']}" for="name" />
-				<h:inputText id="name" value="#{newEvent.name}" />
-				<h:outputLabel value="#{msg['event.description']}" for="description" />
-				<h:inputText id="description" value="#{newEvent.description}" />
-				<h:outputLabel value="#{msg['event.place']}" for="place" />
-				<h:inputText id="place" value="#{newEvent.place}" />
-				<h:selectBooleanCheckbox value="#{newEvent.answerMaybe}" for="answerMaybe"/>
-				<h:outputText id="answerMaybe" value="#{msg['event.answerMaybe']}"/>	
+			
+			<h3>#{msg['eventedit.timeProposals']}</h3>
+			<h:dataTable value="#{addDates.items}" var="item" id="dates">
+				<h:column><h:outputText value="#{item.label} -"/></h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['eventedit.fromDate']}" />
+					</f:facet>
+					<h:inputText id="fromDate" value="#{item.fromDate}"/>
+					
+					<s:validateForm validatorId="datesFormatValidator"/>
+					
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['eventedit.fromTime']}" />
+					</f:facet>
+					<h:inputText value="#{item.fromTime}" id="fromTime"/>
+				</h:column>
+				<h:column>-</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['eventedit.toDate']}" />
+					</f:facet>				
+					<h:inputText value="#{item.toDate}" id="toDate"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['eventedit.toTime']}" />
+					</f:facet>				
+					<h:inputText value="#{item.toTime}" id="toTime"/>
+				</h:column>
+			</h:dataTable>
+			<h:commandButton action="#{addDates.add()}" value="#{msg['eventedit.addDatesButton']}"/>
+			
+			<h:panelGroup rendered="#{identity.loggedIn}">
+				<h3>#{msg['eventedit.Privacy']}</h3>
+				<h:outputText value="#{msg['eventedit.canParticipate']}" />
+			</h:panelGroup>
+			<h:selectOneRadio value="#{newEvent.canParticipate}" rendered="#{identity.loggedIn}" >
+   				<f:selectItem itemValue="everyone" itemLabel="#{msg['eventedit.everyoneCanParticipate']}"/>
+   				<f:selectItem itemValue="regusers" itemLabel="#{msg['eventedit.regusersCanParticipate']}" />
+   				<f:selectItem itemValue="onlywithlink" itemLabel="#{msg['eventedit.onlywithlinkCanParticipate']}" />
+   			</h:selectOneRadio>
+   			<h:panelGrid columns="2" rendered="#{identity.loggedIn}">
+				<h:selectBooleanCheckbox value="#{newEvent.secretEvent}" for="secretEvent" />
+				<h:outputText id="secretEvent" value="#{msg['event.secretEvent']}"/>
 			</h:panelGrid>
-			<h:commandButton action="#{createEventAction.createNoAuth()}" 
-				value="#{msg['event.createEvent']}" />
+
+			<h3>#{msg['eventedit.create']}</h3>
+			<h:commandButton action="#{createEventAction.createNoAuth()}" value="#{msg['event.createEvent']}" rendered="#{!identity.loggedIn}"/>
+			<h:commandButton action="#{createEventAction.create()}" value="#{msg['event.createEvent']}" rendered="#{identity.loggedIn}"/>
+			
 		</h:form>
-		
 	</ui:define>
 
 	<ui:define name="sidebar">
@@ -58,4 +91,5 @@
 		</h:panelGroup>
 		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li></ul>
 	</ui:define>
+	
 </ui:composition>

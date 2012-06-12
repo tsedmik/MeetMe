@@ -21,12 +21,10 @@
 				<h:inputText id="email" value="#{newPerson.email}" />
 				<h:outputLabel value="#{msg['person.password']}" for="password" />
 				<h:inputSecret id="password" value="#{newPerson.password}" />
-				<h:outputLabel value="#{msg['person.password.again']}"
-					for="password" />
+				<h:outputLabel value="#{msg['person.password.again']}" for="password" />
 				<h:inputSecret id="passwordRepeat" />
 			</h:panelGrid>
-			<h:commandButton action="#{registerAction.create}"
-				value="#{msg['person.new.registration.register']}" />
+			<h:commandButton action="#{registerAction.create}" value="#{msg['person.new.registration.register']}" />
 
 			<s:validateForm validatorId="passwordsMatchValidator" />
 			<s:validateForm validatorId="usernameUniquenessValidator"/>

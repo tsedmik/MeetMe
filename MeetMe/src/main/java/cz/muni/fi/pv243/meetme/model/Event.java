@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -40,14 +39,7 @@ public class Event {
 	@OneToMany
 	private List<Date> dates;
 	
-	@ManyToMany
-	private List<Person> participants;
-	
-	@ManyToMany
-	private List<Party> participantGroups;
-	
-	private boolean canParticipateEveryone;
-	private boolean canParticipateRegUsers;
+	private CanParticipate canParticipate;
 	
 	// OPTIONAL
 	private boolean answerMaybe;
@@ -60,9 +52,7 @@ public class Event {
 	}
 	
 	public Event(String name, String description, String place, Person owner,
-			List<Date> dates, List<Person> participants,
-			List<Party> participantGroups, boolean canParticipateEveryone,
-			boolean canParticipateRegUsers, boolean answerMaybe,
+			List<Date> dates, CanParticipate canParticipate, boolean answerMaybe,
 			boolean eventClose, boolean secretEvent, boolean emailNotify) {
 		super();
 		this.name = name;
@@ -70,10 +60,7 @@ public class Event {
 		this.place = place;
 		this.owner = owner;
 		this.dates = dates;
-		this.participants = participants;
-		this.participantGroups = participantGroups;
-		this.canParticipateEveryone = canParticipateEveryone;
-		this.canParticipateRegUsers = canParticipateRegUsers;
+		this.canParticipate = canParticipate;
 		this.answerMaybe = answerMaybe;
 		this.eventClose = eventClose;
 		this.secretEvent = secretEvent;
@@ -139,32 +126,15 @@ public class Event {
 	}
 	public void setEmailNotify(boolean emailNotify) {
 		this.emailNotify = emailNotify;
+	}	
+	public CanParticipate getCanParticipate() {
+		return canParticipate;
 	}
-	public List<Person> getParticipants() {
-		return participants;
+
+	public void setCanParticipate(CanParticipate canParticipate) {
+		this.canParticipate = canParticipate;
 	}
-	public void setParticipants(List<Person> participants) {
-		this.participants = participants;
-	}
-	public List<Party> getParticipantGroups() {
-		return participantGroups;
-	}
-	public void setParticipantGroups(List<Party> participantGroups) {
-		this.participantGroups = participantGroups;
-	}
-	public boolean isCanParticipateEveryone() {
-		return canParticipateEveryone;
-	}
-	public void setCanParticipateEveryone(boolean canParticipateEveryone) {
-		this.canParticipateEveryone = canParticipateEveryone;
-	}
-	public boolean isCanParticipateRegUsers() {
-		return canParticipateRegUsers;
-	}
-	public void setCanParticipateRegUsers(boolean canParticipateRegUsers) {
-		this.canParticipateRegUsers = canParticipateRegUsers;
-	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

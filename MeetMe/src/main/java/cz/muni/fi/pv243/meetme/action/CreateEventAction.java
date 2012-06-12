@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 
 import org.jboss.seam.international.status.Messages;
 
+import cz.muni.fi.pv243.meetme.model.CanParticipate;
 import cz.muni.fi.pv243.meetme.model.Event;
 
 @Model
@@ -29,6 +30,7 @@ public class CreateEventAction {
 	@PostConstruct
 	public void initialize() {
 		event = new Event();
+		event.setCanParticipate(CanParticipate.everyone);
 	}
 	
 	@Inject
