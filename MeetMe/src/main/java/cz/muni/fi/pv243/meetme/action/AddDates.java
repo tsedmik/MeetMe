@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 
@@ -15,7 +16,7 @@ import javax.inject.Named;
 @ViewScoped
 public class AddDates {
 	
-	ResourceBundle msg = ResourceBundle.getBundle("cz.muni.fi.pv243.meetme.viewconfig.messages_cs");
+	private ResourceBundle msg = ResourceBundle.getBundle("cz.muni.fi.pv243.meetme.viewconfig.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 	
 	private List<DatesItem> items = new ArrayList<DatesItem>();
 	

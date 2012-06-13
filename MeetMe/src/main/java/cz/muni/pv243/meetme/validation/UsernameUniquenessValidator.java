@@ -26,7 +26,7 @@ public class UsernameUniquenessValidator implements Validator {
 	@PersistenceContext
 	EntityManager em;
 
-	ResourceBundle msg = ResourceBundle.getBundle("cz.muni.fi.pv243.meetme.viewconfig.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+	private ResourceBundle msg = ResourceBundle.getBundle("cz.muni.fi.pv243.meetme.viewconfig.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 	
 	@Override
 	public void validate(FacesContext arg0, UIComponent arg1, Object arg2)

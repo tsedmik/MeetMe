@@ -4,13 +4,12 @@ import java.util.ResourceBundle;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.faces.context.FacesContext;
 
 import org.jboss.seam.international.status.Messages;
 import org.jboss.seam.security.events.LoggedInEvent;
 import org.jboss.seam.security.events.LoginFailedEvent;
 import org.jboss.solder.logging.Logger;
-
-
 
 /**
  * 
@@ -21,7 +20,7 @@ import org.jboss.solder.logging.Logger;
 @ApplicationScoped
 public class PersonLogging {
 	
-	ResourceBundle msg = ResourceBundle.getBundle("cz.muni.fi.pv243.meetme.viewconfig.messages_cs");
+	private ResourceBundle msg = ResourceBundle.getBundle("cz.muni.fi.pv243.meetme.viewconfig.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 	
 	public void personLoggedIn(@Observes LoggedInEvent event, Logger log) {
 		log.info("User " + event.getUser().getId() + " logged in.");

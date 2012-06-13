@@ -29,15 +29,12 @@
 			
 			<h3>#{msg['eventedit.timeProposals']}</h3>
 			<h:dataTable value="#{addDates.items}" var="item" id="dates">
-				<h:column><h:outputText value="#{item.label} -"/></h:column>
+				<h:column><h:outputText value="#{item.label}" id="label"/><h:outputText value=" - "/></h:column>
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="#{msg['eventedit.fromDate']}" />
 					</f:facet>
 					<h:inputText id="fromDate" value="#{item.fromDate}"/>
-					
-					<s:validateForm validatorId="datesFormatValidator"/>
-					
 				</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -57,7 +54,11 @@
 						<h:outputText value="#{msg['eventedit.toTime']}" />
 					</f:facet>				
 					<h:inputText value="#{item.toTime}" id="toTime"/>
-				</h:column>
+					
+					<!-- Validator je nutne mit zde, aby se zavolal podle poctu radku a znal vsechny hodnoty (fromData, fromTime, ...) -->
+					<s:validateForm validatorId="datesFormatValidator"/>
+					
+				</h:column>		
 			</h:dataTable>
 			<h:commandButton action="#{addDates.add()}" value="#{msg['eventedit.addDatesButton']}"/>
 			

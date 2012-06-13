@@ -9,6 +9,13 @@
 	<ui:define name="content">
 		<h1>#{msg['participate.heading']}</h1>
 		<h:messages/>
+		
+		<h:panelGroup rendered="#{identity.loggedIn}">
+			<h3>AAA - Udalosti dostupne pouze registrovanym</h3>
+		</h:panelGroup>
+		
+		<h3>AAA - Verejne dostupne udalosti</h3>
+
 	</ui:define>
 
 	<ui:define name="sidebar">
