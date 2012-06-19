@@ -5,17 +5,79 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:s="http://jboss.org/seam/faces"
 	template="/WEB-INF/templates/default.xhtml">
-
+	
 	<ui:define name="content">
 		<h1>#{msg['eventslist.heading']}</h1>
-		
 		<h:messages/>
 		
-		<h2>#{msg['eventslist.listOfEvents']}</h2>
-					
+		<h:panelGroup rendered="#{identity.loggedIn}">
+			<h3>#{msg['eventslist.eventsForRegUsers']}</h3>
+			
+			<h:dataTable value="#{eventsForRegUsers}" var="_event">
+				<h:column>
+					<f:facet name="header">
+						Name
+					</f:facet>
+					<b>
+					<h:link value="#{_event.name}" outcome="participateAuth">
+						<f:param name="id" value="#{_event.id}"/>
+					</h:link>
+					</b>
+	            </h:column>
+				<h:column>  
+					<f:facet name="header">
+						Description
+					</f:facet>
+					#{_event.description}     
+				</h:column>
+    	        <h:column>
+					<f:facet name="header">
+						Event owner
+					</f:facet>
+					#{_event.owner.username}
+				</h:column>
+			</h:dataTable>
+			<br/>
+			<br/>
+		</h:panelGroup>
+		
+		<h3>#{msg['eventslist.eventsForEveryone']}</h3>
+		
+		<h:dataTable value="#{eventsForEveryone}" var="_event">
+			<h:column>
+				<f:facet name="header">
+					Name
+				</f:facet>
+				<b>
+				<h:link value="#{_event.name}" outcome="participate">
+					<f:param name="id" value="#{_event.id}"/>
+				</h:link>
+				</b>
+            </h:column>
+			<h:column>  
+				<f:facet name="header">
+					Description
+				</f:facet>
+				#{_event.description}     
+			</h:column>
+            <h:column>
+				<f:facet name="header">
+					Event owner
+				</f:facet>
+				#{_event.owner.username}
+			</h:column>			
+		</h:dataTable>
+
 	</ui:define>
 
 	<ui:define name="sidebar">
+		<h:panelGroup rendered="#{!identity.loggedIn}">
+			<ul>
+				<li><h:link outcome="login" value="#{msg['index.login']}" /></li>
+				<li><h:link outcome="register" value="#{msg['index.newRegistration']}" /></li>
+			</ul>
+		</h:panelGroup>
 		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li></ul>
 	</ui:define>
+	
 </ui:composition>

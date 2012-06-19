@@ -31,7 +31,7 @@ public class CreateEventAction {
 	@PostConstruct
 	public void initialize() {
 		event = new Event();
-		event.setCanParticipate(CanParticipate.everyone);
+		event.setCanParticipate(CanParticipate.onlywithlink);
 	}
 	
 	@Inject

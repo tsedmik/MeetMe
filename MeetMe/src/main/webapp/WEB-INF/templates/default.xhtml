@@ -12,9 +12,6 @@
 <h:body>
 	<div id="container">
 		<div id="content">
-			<div id="sidebar">
-				<ui:insert name="sidebar" />
-			</div>
 			<div>
 				<h:panelGroup rendered="#{identity.loggedIn}">
 					<h:form>
@@ -22,6 +19,9 @@
                			<h:commandButton action="#{identity.logout}" value="#{msg.Logout}" />
                 	</h:form>
 				</h:panelGroup>
+			</div>
+			<div id="sidebar">
+				<ui:insert name="sidebar" />
 			</div>
 			<ui:insert name="content" />
 		</div>

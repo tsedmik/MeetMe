@@ -60,16 +60,16 @@
 					
 				</h:column>		
 			</h:dataTable>
-			<h:commandButton action="#{addDates.add()}" value="#{msg['eventedit.addDatesButton']}"/>
+			<h:commandButton action="#{addDates.add}" value="#{msg['eventedit.addDatesButton']}"/>
 			
 			<h:panelGroup rendered="#{identity.loggedIn}">
 				<h3>#{msg['eventedit.Privacy']}</h3>
 				<h:outputText value="#{msg['eventedit.canParticipate']}" />
 			</h:panelGroup>
 			<h:selectOneRadio value="#{newEvent.canParticipate}" rendered="#{identity.loggedIn}" >
-   				<f:selectItem itemValue="everyone" itemLabel="#{msg['eventedit.everyoneCanParticipate']}"/>
-   				<f:selectItem itemValue="regusers" itemLabel="#{msg['eventedit.regusersCanParticipate']}" />
    				<f:selectItem itemValue="onlywithlink" itemLabel="#{msg['eventedit.onlywithlinkCanParticipate']}" />
+   				<f:selectItem itemValue="regusers" itemLabel="#{msg['eventedit.regusersCanParticipate']}" />
+ 				<f:selectItem itemValue="everyone" itemLabel="#{msg['eventedit.everyoneCanParticipate']}"/>  				
    			</h:selectOneRadio>
    			<h:panelGrid columns="2" rendered="#{identity.loggedIn}">
 				<h:selectBooleanCheckbox value="#{newEvent.secretEvent}" for="secretEvent" />
@@ -77,8 +77,8 @@
 			</h:panelGrid>
 
 			<h3>#{msg['eventedit.create']}</h3>
-			<h:commandButton action="#{createEventAction.createNoAuth()}" value="#{msg['event.createEvent']}" rendered="#{!identity.loggedIn}"/>
-			<h:commandButton action="#{createEventAction.create()}" value="#{msg['event.createEvent']}" rendered="#{identity.loggedIn}"/>
+			<h:commandButton action="#{createEventAction.createNoAuth}" value="#{msg['event.createEvent']}" rendered="#{!identity.loggedIn}"/>
+			<h:commandButton action="#{createEventAction.create}" value="#{msg['event.createEvent']}" rendered="#{identity.loggedIn}"/>
 			
 		</h:form>
 	</ui:define>

@@ -3,13 +3,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:s="http://jboss.org/seam/faces"
 	template="/WEB-INF/templates/default.xhtml">
-
-	<ui:define name="content">
-		<h:messages />
-		<h1>#{msg['index.heading']}</h1>
-		<p>#{msg['index.welcome']}</p>
+	
+	<ui:define name="header">
+	<!--
+		<f:metadata>
+        	<f:viewParam name="id" value="#{_eventid}"/>
+            <s:viewAction action="#{currentBakeryProducer.setBakeryById(_eventid)}"/>
+        </f:metadata>
+    -->
 	</ui:define>
+	
+	<ui:define name="content">
+		<h1>#{msg['participate.heading']}</h1>
+	</ui:define>
+	
 	<ui:define name="sidebar">
 		<h:panelGroup rendered="#{!identity.loggedIn}">
 			<ul>
@@ -17,14 +26,9 @@
 				<li><h:link outcome="register" value="#{msg['index.newRegistration']}" /></li>
 			</ul>
 		</h:panelGroup>
-
 		<ul>
-			<li><b><h:link outcome="eventedit" value="#{msg['index.newEvent']}" /></b></li>
-			<h:panelGroup rendered="#{identity.loggedIn}">
-				<li><h:link outcome="myevents" value="#{msg['myevents.heading']}" /></li>
-			</h:panelGroup>
-			<li><b><h:link outcome="eventslist" value="#{msg['index.participate']}" /></b></li>
+			<li><h:link outcome="eventslist" value="#{msg['sidebar.backToEventsList']}"/></li>
+			<li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li>
 		</ul>
-
 	</ui:define>
 </ui:composition>
