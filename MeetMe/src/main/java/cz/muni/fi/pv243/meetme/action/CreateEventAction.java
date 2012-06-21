@@ -33,6 +33,9 @@ public class CreateEventAction {
 	@Inject
 	DatesList dates;
 	
+	@Inject
+	CurrentEventProducer eventProducer;
+	
 	private Event event;
 	
 	
@@ -59,6 +62,7 @@ public class CreateEventAction {
 		event.setDates(tempDates);
 		persistDates(tempDates);
 		em.persist(event);
+		eventProducer.setEvent(event);
 		
 		// show message
 		messages.info(msg.getString("event.eventCreated"), event.getName());
@@ -106,6 +110,8 @@ public class CreateEventAction {
 	}
 	
 	private void persistDates(List<Date> dates) {
+		
+		if (dates == null) return;
 		
 		for (int i = 0; i < dates.size(); i++) {
 			em.persist(dates.get(i));

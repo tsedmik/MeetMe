@@ -21,7 +21,7 @@ public class Event {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	
 	@NotNull
 	@Size(min = 4, max = 100, message = "name - size must be between 4 and 100")
@@ -67,10 +67,10 @@ public class Event {
 		this.emailNotify = emailNotify;
 	}
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {

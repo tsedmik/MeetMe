@@ -5,17 +5,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:s="http://jboss.org/seam/faces"
 	template="/WEB-INF/templates/default.xhtml">
-	
-	<ui:define name="header">
-		<f:metadata>
-        	<f:viewParam name="id" value="#{_eventid}"/>
-            <s:viewAction action="#{currentEventProducer.setEventById(_eventid)}"/>
-        </f:metadata>
-	</ui:define>
-	
+
 	<ui:define name="content">
-		<h1>#{msg['participate.heading']}</h1>
-		<h2>#{event.name}</h2>
+		<h1>#{msg['eventsummary.heading']}</h1>
+		
+		<h:messages/>
+		
+		<h4>#{msg['eventsummary.participateLink']}</h4>
+		<ul><li><a href="#{request.contextPath}/event/#{event.id}/">#{request.contextPath}/event/#{event.id}/</a>
+		</li></ul>
+		
+		<h4>#{msg['eventsummary.manageLink']}</h4>
+		<ul><li>BUDE DOPLNENO</li></ul>
+					
 	</ui:define>
 
 	<ui:define name="sidebar">
@@ -25,9 +27,6 @@
 				<li><h:link outcome="register" value="#{msg['index.newRegistration']}" /></li>
 			</ul>
 		</h:panelGroup>
-		<ul>
-			<li><h:link outcome="eventslist" value="#{msg['sidebar.backToEventsList']}"/></li>
-			<li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li>
-		</ul>
+		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li></ul>
 	</ui:define>
 </ui:composition>

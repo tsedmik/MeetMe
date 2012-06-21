@@ -8,14 +8,34 @@
 
 	<ui:define name="content">
 		<h1>#{msg['myevents.heading']}</h1>
-		
-		<h:messages/>
-		
+
+		<h:messages />
+
 		<h2>#{msg['myevents.listOfEvents']}</h2>
-					
+
+		<h:dataTable value="#{regUserEvents}" var="_event">
+			<h:column>
+				<f:facet name="header">
+						Name
+					</f:facet>
+				<b> <h:link value="#{_event.name}" outcome="participateAuth">
+						<f:param name="id" value="#{_event.id}" />
+					</h:link>
+				</b>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+						Description
+					</f:facet>
+					#{_event.description}     
+				</h:column>
+		</h:dataTable>
+
 	</ui:define>
 
 	<ui:define name="sidebar">
-		<ul><li><h:link outcome="index" value="#{msg['registration.backToIndex']}"/></li></ul>
+		<ul>
+			<li><h:link outcome="index" value="#{msg['registration.backToIndex']}" /></li>
+		</ul>
 	</ui:define>
 </ui:composition>

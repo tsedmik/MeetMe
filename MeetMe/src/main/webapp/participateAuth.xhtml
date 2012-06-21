@@ -7,16 +7,15 @@
 	template="/WEB-INF/templates/default.xhtml">
 	
 	<ui:define name="header">
-	<!--
 		<f:metadata>
         	<f:viewParam name="id" value="#{_eventid}"/>
-            <s:viewAction action="#{currentBakeryProducer.setBakeryById(_eventid)}"/>
+            <s:viewAction action="#{currentEventProducer.setEventById(_eventid)}"/>
         </f:metadata>
-    -->
 	</ui:define>
 	
 	<ui:define name="content">
 		<h1>#{msg['participate.heading']}</h1>
+		<h2>#{event.name}</h2>
 	</ui:define>
 	
 	<ui:define name="sidebar">

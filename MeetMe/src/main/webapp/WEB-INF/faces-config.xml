@@ -33,6 +33,15 @@
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/eventedit.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{createEventAction.create}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/eventsummary.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 
 </faces-config>
