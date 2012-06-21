@@ -14,7 +14,7 @@ import cz.muni.fi.pv243.meetme.model.Event;
 
 @Stateless
 @Named
-public class EventsList {
+public class EventsListAction {
 	
 	@PersistenceContext
 	private EntityManager em;

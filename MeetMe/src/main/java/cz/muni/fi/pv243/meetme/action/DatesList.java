@@ -13,7 +13,7 @@ import javax.inject.Named;
 @Named
 @Stateful
 @ViewScoped
-public class AddDates {
+public class DatesList {
 	
 	private ResourceBundle msg = ResourceBundle.getBundle("cz.muni.fi.pv243.meetme.viewconfig.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 	
@@ -23,7 +23,7 @@ public class AddDates {
 	public void initialize() {
 		for (int i = 1; i < 4; i++) {
 			items.add(new DatesItem(i + msg.getString("eventedit.dateOption")));
-		}
+		}													
 		
 	}
 	

@@ -28,7 +28,7 @@
 			</h:panelGrid>
 			
 			<h3>#{msg['eventedit.timeProposals']}</h3>
-			<h:dataTable value="#{addDates.items}" var="item" id="dates">
+			<h:dataTable value="#{datesList.items}" var="item" id="dates">
 				<h:column><h:outputText value="#{item.label}" id="label"/><h:outputText value=" - "/></h:column>
 				<h:column>
 					<f:facet name="header">
@@ -60,7 +60,7 @@
 					
 				</h:column>		
 			</h:dataTable>
-			<h:commandButton action="#{addDates.add}" value="#{msg['eventedit.addDatesButton']}"/>
+			<h:commandButton action="#{datesList.add}" value="#{msg['eventedit.addDatesButton']}"/>
 			
 			<h:panelGroup rendered="#{identity.loggedIn}">
 				<h3>#{msg['eventedit.Privacy']}</h3>
@@ -77,8 +77,7 @@
 			</h:panelGrid>
 
 			<h3>#{msg['eventedit.create']}</h3>
-			<h:commandButton action="#{createEventAction.createNoAuth}" value="#{msg['event.createEvent']}" rendered="#{!identity.loggedIn}"/>
-			<h:commandButton action="#{createEventAction.create}" value="#{msg['event.createEvent']}" rendered="#{identity.loggedIn}"/>
+			<h:commandButton action="#{createEventAction.create}" value="#{msg['event.createEvent']}"/>
 			
 		</h:form>
 	</ui:define>
