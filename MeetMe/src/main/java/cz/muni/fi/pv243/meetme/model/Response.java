@@ -1,5 +1,7 @@
 package cz.muni.fi.pv243.meetme.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,8 +16,10 @@ import javax.validation.constraints.Size;
  * @since 03-05-2012
  */
 @Entity
-public class Response {
+public class Response implements Serializable {
 	
+	private static final long serialVersionUID = 8812299577098221192L;
+
 	@Id
 	@GeneratedValue
 	private long id;

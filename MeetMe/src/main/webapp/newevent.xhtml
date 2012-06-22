@@ -7,13 +7,13 @@
 	template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h1>#{msg['eventedit.heading']}</h1>
+		<h1>#{msg['newevent.heading']}</h1>
 		
 		<h:messages/>
 		
 		<h:form id="form">
 			
-			<h3>#{msg['eventedit.basicSettings']}</h3>
+			<h3>#{msg['newevent.basicSettings']}</h3>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="#{msg['event.name']}" for="name" />
 				<h:inputText id="name" value="#{newEvent.name}" />
@@ -27,31 +27,31 @@
 				<h:outputText id="emailNotify" value="#{msg['event.emailNotify']}" rendered="#{identity.loggedIn}"/>	
 			</h:panelGrid>
 			
-			<h3>#{msg['eventedit.timeProposals']}</h3>
+			<h3>#{msg['newevent.timeProposals']}</h3>
 			<h:dataTable value="#{datesList.items}" var="item" id="dates">
 				<h:column><h:outputText value="#{item.label}" id="label"/><h:outputText value=" - "/></h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="#{msg['eventedit.fromDate']}" />
+						<h:outputText value="#{msg['newevent.fromDate']}" />
 					</f:facet>
 					<h:inputText id="fromDate" value="#{item.fromDate}"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="#{msg['eventedit.fromTime']}" />
+						<h:outputText value="#{msg['newevent.fromTime']}" />
 					</f:facet>
 					<h:inputText value="#{item.fromTime}" id="fromTime"/>
 				</h:column>
 				<h:column>-</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="#{msg['eventedit.toDate']}" />
+						<h:outputText value="#{msg['newevent.toDate']}" />
 					</f:facet>				
 					<h:inputText value="#{item.toDate}" id="toDate"/>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="#{msg['eventedit.toTime']}" />
+						<h:outputText value="#{msg['newevent.toTime']}" />
 					</f:facet>				
 					<h:inputText value="#{item.toTime}" id="toTime"/>
 					
@@ -60,23 +60,23 @@
 					
 				</h:column>		
 			</h:dataTable>
-			<h:commandButton action="#{datesList.add}" value="#{msg['eventedit.addDatesButton']}"/>
+			<h:commandButton action="#{datesList.add}" value="#{msg['newevent.addDatesButton']}"/>
 			
 			<h:panelGroup rendered="#{identity.loggedIn}">
-				<h3>#{msg['eventedit.Privacy']}</h3>
-				<h:outputText value="#{msg['eventedit.canParticipate']}" />
+				<h3>#{msg['newevent.Privacy']}</h3>
+				<h:outputText value="#{msg['newevent.canParticipate']}" />
 			</h:panelGroup>
 			<h:selectOneRadio value="#{newEvent.canParticipate}" rendered="#{identity.loggedIn}" >
-   				<f:selectItem itemValue="onlywithlink" itemLabel="#{msg['eventedit.onlywithlinkCanParticipate']}" />
-   				<f:selectItem itemValue="regusers" itemLabel="#{msg['eventedit.regusersCanParticipate']}" />
- 				<f:selectItem itemValue="everyone" itemLabel="#{msg['eventedit.everyoneCanParticipate']}"/>  				
+   				<f:selectItem itemValue="onlywithlink" itemLabel="#{msg['newevent.onlywithlinkCanParticipate']}" />
+   				<f:selectItem itemValue="regusers" itemLabel="#{msg['newevent.regusersCanParticipate']}" />
+ 				<f:selectItem itemValue="everyone" itemLabel="#{msg['newevent.everyoneCanParticipate']}"/>  				
    			</h:selectOneRadio>
    			<h:panelGrid columns="2" rendered="#{identity.loggedIn}">
 				<h:selectBooleanCheckbox value="#{newEvent.secretEvent}" for="secretEvent" />
 				<h:outputText id="secretEvent" value="#{msg['event.secretEvent']}"/>
 			</h:panelGrid>
 
-			<h3>#{msg['eventedit.create']}</h3>
+			<h3>#{msg['newevent.create']}</h3>
 			<h:commandButton action="#{createEventAction.create}" value="#{msg['event.createEvent']}">
 				<f:setPropertyActionListener target="#{currentEventProducer.event}" value="#{_event}"/>
 			</h:commandButton>

@@ -11,5 +11,4 @@
     <param-name>org.jboss.seam.transaction.disableListener</param-name>
     <param-value>true</param-value>
   </context-param>
-
 </web-app>

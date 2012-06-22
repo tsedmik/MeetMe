@@ -16,7 +16,7 @@ import cz.muni.fi.pv243.meetme.model.Event;
 @Stateful
 public class CurrentEventProducer implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	
 	@Inject
 	CurrentEventUnwrapper eventUnwrapper;
@@ -41,7 +41,7 @@ public class CurrentEventProducer implements Serializable {
 			return null;
 		}
 		
-		return eventUnwrapper.getCurrentEvent().getId().toString();
+		return Long.toString(eventUnwrapper.getCurrentEvent().getId());
 	}	
 
 }

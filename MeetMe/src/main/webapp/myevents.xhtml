@@ -15,9 +15,14 @@
 
 		<h:dataTable value="#{regUserEvents}" var="_event">
 			<h:column>
+				<h:commandButton action="#{createEventAction.create}" value="#{msg['myevents.buttonEdit']}">
+					<f:setPropertyActionListener target="#{currentEventProducer.event}" value="#{_event}"/>
+				</h:commandButton>     
+			</h:column>
+			<h:column>
 				<f:facet name="header">
-						Name
-					</f:facet>
+					#{msg['myevents.tableName']}
+				</f:facet>
 				<b> <h:link value="#{_event.name}" outcome="participateAuth">
 						<f:param name="id" value="#{_event.id}" />
 					</h:link>
@@ -25,10 +30,10 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-						Description
-					</f:facet>
-					#{_event.description}     
-				</h:column>
+					#{msg['myevents.tableDescription']}
+				</f:facet>
+				#{_event.description}     
+			</h:column>
 		</h:dataTable>
 
 	</ui:define>

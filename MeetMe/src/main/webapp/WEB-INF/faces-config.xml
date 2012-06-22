@@ -3,20 +3,7 @@
 <faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="         http://java.sun.com/xml/ns/javaee         http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
-
-	<application>
-		<locale-config>
-			<default-locale>en</default-locale>
-			<supported-locale>cs</supported-locale>
-		</locale-config>
-
-		<resource-bundle>
-			<base-name>cz.muni.fi.pv243.meetme.viewconfig.messages</base-name>
-			<var>msg</var>
-		</resource-bundle>
-
-	</application>
-
+	
 	<navigation-rule>
 		<from-view-id>/register.xhtml</from-view-id>
 		<navigation-case>
@@ -25,7 +12,7 @@
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
+	
 	<navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
@@ -35,13 +22,47 @@
 	</navigation-rule>
 	
 	<navigation-rule>
-		<from-view-id>/eventedit.xhtml</from-view-id>
+		<from-view-id>/newevent.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{createEventAction.create}</from-action>
 			<if>#{true}</if>
 			<to-view-id>/eventsummary.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
-
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-action>#{identity.logout}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/myevents.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{editEventAction.edit}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/editevent.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-action>#{createEventAction.create}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/eventsummary.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>cs</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>cz.muni.fi.pv243.meetme.viewconfig.messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
 </faces-config>

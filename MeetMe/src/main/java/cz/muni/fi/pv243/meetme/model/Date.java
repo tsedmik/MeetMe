@@ -1,5 +1,7 @@
 package cz.muni.fi.pv243.meetme.model;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,8 +19,10 @@ import javax.validation.constraints.Size;
  * @since 03-05-2012
  */
 @Entity  
-public class Date {
-	
+public class Date implements Serializable {
+
+	private static final long serialVersionUID = 5406244067831461969L;
+
 	@Id 
 	@GeneratedValue
 	private long id;
@@ -116,8 +120,8 @@ public class Date {
 	}
 	@Override
 	public String toString() {
-		return "Date [id=" + id + ", fromDate=" + fromDate + ", toDate="
-				+ toDate + ", note=" + note + "]";
+		SimpleDateFormat sdf= new SimpleDateFormat("dd-M-yy hh:ss");
+		return sdf.format(fromDate) + " - " + sdf.format(toDate);
 	}
 	
 

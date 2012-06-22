@@ -1,5 +1,6 @@
 package cz.muni.fi.pv243.meetme.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,8 +19,10 @@ import javax.validation.constraints.Size;
  * @since 03-05-2012
  */
 @Entity
-public class Party {
-	
+public class Party implements Serializable {
+
+	private static final long serialVersionUID = -1885646994977096250L;
+
 	@Id
 	@GeneratedValue
 	private long id;

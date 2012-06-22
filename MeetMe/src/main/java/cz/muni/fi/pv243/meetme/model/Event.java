@@ -1,8 +1,10 @@
 package cz.muni.fi.pv243.meetme.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -17,11 +19,13 @@ import javax.validation.constraints.Size;
  * @since 03-05-2012
  */
 @Entity
-public class Event {
+public class Event implements Serializable {
+
+	private static final long serialVersionUID = 9140396113831392275L;
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private long id;
 	
 	@NotNull
 	@Size(min = 4, max = 100, message = "name - size must be between 4 and 100")
@@ -33,10 +37,9 @@ public class Event {
 	@Size(max = 200, message = "description - size must be max 200")
 	private String place;
 	
-	@ManyToOne
 	private Person owner;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Date> dates;
 	
 	private CanParticipate canParticipate;
@@ -67,10 +70,10 @@ public class Event {
 		this.emailNotify = emailNotify;
 	}
 	
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -91,6 +94,8 @@ public class Event {
 	public void setPlace(String place) {
 		this.place = place;
 	}
+	
+	@ManyToOne
 	public Person getOwner() {
 		return owner;
 	}

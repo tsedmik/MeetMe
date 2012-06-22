@@ -1,5 +1,7 @@
 package cz.muni.fi.pv243.meetme.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -18,7 +20,9 @@ import cz.muni.fi.pv243.meetme.security.HashPassword;;
  * @since 03-05-2012
  */
 @Entity
-public class Person implements User {
+public class Person implements User, Serializable {
+
+	private static final long serialVersionUID = 2677466923821176439L;
 
 	@Id
 	@NotNull

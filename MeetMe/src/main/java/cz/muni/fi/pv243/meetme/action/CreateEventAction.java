@@ -16,10 +16,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.jboss.seam.international.status.Messages;
+import org.jboss.seam.security.Identity;
 
 import cz.muni.fi.pv243.meetme.model.CanParticipate;
 import cz.muni.fi.pv243.meetme.model.Date;
 import cz.muni.fi.pv243.meetme.model.Event;
+import cz.muni.fi.pv243.meetme.model.Person;
 
 @Model
 @Stateful
@@ -28,13 +30,16 @@ public class CreateEventAction {
 	private ResourceBundle msg = ResourceBundle.getBundle("cz.muni.fi.pv243.meetme.viewconfig.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 	
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 	
 	@Inject
-	DatesList dates;
+	private DatesList dates;
 	
 	@Inject
-	CurrentEventProducer eventProducer;
+	private CurrentEventProducer eventProducer;
+	
+	@Inject
+	private Identity identity;
 	
 	private Event event;
 	
@@ -46,7 +51,7 @@ public class CreateEventAction {
 		// setting up attributes that are for unregistered users
 		event.setCanParticipate(CanParticipate.onlywithlink);
 		event.setEmailNotify(false);
-		event.setOwner(null);
+		event.setOwner(em.createQuery("select b from Person b where b.username='unknown'",Person.class).getResultList().get(0));
 		event.setSecretEvent(false);
 	}
 	
@@ -54,8 +59,12 @@ public class CreateEventAction {
 	Messages messages;
 	
 	public void create() {
-		// TODO check event and dates if are properly filled (if we don't rely on form validation)
-		// TODO add form validation - some row with dates must be filled
+		
+		// link event with logged user
+		if (identity.isLoggedIn()) {
+			
+			event.setOwner(em.createQuery("select b from Person b where b.id=?",Person.class).setParameter(1, identity.getUser().getId()).getResultList().get(0));
+		}
 		
 		// data persist
 		List<Date> tempDates = createListOfDates(dates);

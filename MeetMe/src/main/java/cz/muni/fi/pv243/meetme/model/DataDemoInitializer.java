@@ -28,10 +28,12 @@ public class DataDemoInitializer {
 		Person person2 = new Person("user2",HashPassword.byteArrayToHexString(HashPassword.computeHash("pass2")),"email2@email.com");
 		Person person3 = new Person("user3",HashPassword.byteArrayToHexString(HashPassword.computeHash("pass3")),"email3@email.com");
 		Person person4 = new Person("user4",HashPassword.byteArrayToHexString(HashPassword.computeHash("pass4")),"email4@email.com");
+		Person unknown = new Person("unknown", HashPassword.byteArrayToHexString(HashPassword.computeHash("234;lsl,.3Wr4")), "email4@email.com");
 		manager.persist(person1);
 		manager.persist(person2);
 		manager.persist(person3);
 		manager.persist(person4);
+		manager.persist(unknown);
 		
 		//Groups
 		List<Person> temp = new ArrayList<Person>();

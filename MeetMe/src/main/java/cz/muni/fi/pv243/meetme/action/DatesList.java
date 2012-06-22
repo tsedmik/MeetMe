@@ -22,7 +22,7 @@ public class DatesList {
 	@PostConstruct
 	public void initialize() {
 		for (int i = 1; i < 4; i++) {
-			items.add(new DatesItem(i + msg.getString("eventedit.dateOption")));
+			items.add(new DatesItem(i + msg.getString("newevent.dateOption")));
 		}													
 		
 	}
@@ -30,7 +30,7 @@ public class DatesList {
 	public void add() {
 		for (int i = 1; i < 4; i++) {
 			DatesItem temp = new DatesItem();
-			temp.setLabel(items.size() + 1 + msg.getString("eventedit.dateOption"));
+			temp.setLabel(items.size() + 1 + msg.getString("newevent.dateOption"));
 			items.add(temp);
 		}
 	}
