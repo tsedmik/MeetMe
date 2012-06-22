@@ -6,17 +6,80 @@
 	xmlns:s="http://jboss.org/seam/faces"
 	template="/WEB-INF/templates/default.xhtml">
 
-	<ui:define name="header">
-		<f:metadata>
-        	<f:viewParam name="id" value="#{_eventid}"/>
-            <s:viewAction action="#{currentEventProducer.setEventById(_eventid)}"/>
-        </f:metadata>
-	</ui:define>
+
 	
 	<ui:define name="content">
 		<h1>#{msg['newevent.heading']}</h1>
 		
 		<h:messages/>
+		<h:form>
+			<h3>#{msg['newevent.basicSettings']}</h3>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="#{msg['event.name']}" for="name" />
+				<h:inputText id="name" value="#{event.name}" />
+				<h:outputLabel value="#{msg['event.description']}" for="description" />
+				<h:inputText id="description" value="#{event.description}" />
+				<h:outputLabel value="#{msg['event.place']}" for="place" />
+				<h:inputText id="place" value="#{event.place}" />
+				<h:selectBooleanCheckbox value="#{event.answerMaybe}" for="answerMaybe"/>
+				<h:outputText id="answerMaybe" value="#{msg['event.answerMaybe']}"/>
+				<h:selectBooleanCheckbox value="#{event.emailNotify}" for="emailNotify" rendered="#{identity.loggedIn}"/>
+				<h:outputText id="emailNotify" value="#{msg['event.emailNotify']}" rendered="#{identity.loggedIn}"/>	
+			</h:panelGrid>
+			
+			<h3>#{msg['newevent.timeProposals']}</h3>
+			<h:dataTable value="#{datesList.items}" var="item" id="dates">
+				<h:column><h:outputText value="#{item.label}" id="label"/><h:outputText value=" - "/></h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['newevent.fromDate']}" />
+					</f:facet>
+					<h:inputText id="fromDate" value="#{item.fromDate}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['newevent.fromTime']}" />
+					</f:facet>
+					<h:inputText value="#{item.fromTime}" id="fromTime"/>
+				</h:column>
+				<h:column>-</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['newevent.toDate']}" />
+					</f:facet>				
+					<h:inputText value="#{item.toDate}" id="toDate"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['newevent.toTime']}" />
+					</f:facet>				
+					<h:inputText value="#{item.toTime}" id="toTime"/>
+					
+					<!-- Validator je nutne mit zde, aby se zavolal podle poctu radku a znal vsechny hodnoty (fromData, fromTime, ...) -->
+					<s:validateForm validatorId="datesFormatValidator"/>
+					
+				</h:column>		
+			</h:dataTable>
+			<h:commandButton action="#{datesList.add}" value="#{msg['newevent.addDatesButton']}"/>			
+			
+			<h:panelGroup rendered="#{identity.loggedIn}">
+				<h3>#{msg['newevent.Privacy']}</h3>
+				<h:outputText value="#{msg['newevent.canParticipate']}" />
+			</h:panelGroup>
+			<h:selectOneRadio value="#{event.canParticipate}" rendered="#{identity.loggedIn}" >
+   				<f:selectItem itemValue="onlywithlink" itemLabel="#{msg['newevent.onlywithlinkCanParticipate']}" />
+   				<f:selectItem itemValue="regusers" itemLabel="#{msg['newevent.regusersCanParticipate']}" />
+ 				<f:selectItem itemValue="everyone" itemLabel="#{msg['newevent.everyoneCanParticipate']}"/>  				
+   			</h:selectOneRadio>
+   			<h:panelGrid columns="2" rendered="#{identity.loggedIn}">
+				<h:selectBooleanCheckbox value="#{event.secretEvent}" for="secretEvent" />
+				<h:outputText id="secretEvent" value="#{msg['event.secretEvent']}"/>
+			</h:panelGrid>
+
+			<h3>#{msg['newevent.create']}</h3>
+			<h:commandButton action="#{editEventAction.save}" value="Done" />
+			<h:commandButton action="#{editEventAction.cancel}" value="Cancel" />
+		</h:form>
 		
 	</ui:define>
 

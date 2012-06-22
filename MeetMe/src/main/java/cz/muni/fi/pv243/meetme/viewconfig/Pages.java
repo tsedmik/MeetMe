@@ -8,8 +8,6 @@ import org.jboss.seam.faces.view.config.ViewConfig;
 import org.jboss.seam.faces.view.config.ViewPattern;
 import org.jboss.seam.security.annotations.LoggedIn;
 
-import cz.muni.fi.pv243.meetme.security.IsEventOwnerOf;
-
 @ViewConfig
 public interface Pages {
 	static enum Pages1 {
@@ -22,7 +20,6 @@ public interface Pages {
         
         @ViewPattern("/editevent.xhtml")
 		@UrlMapping(pattern="/event/manage/#{id}/")
-        //@IsEventOwnerOf
 		@RestrictAtPhase({PhaseIdType.RESTORE_VIEW, PhaseIdType.INVOKE_APPLICATION})
         EDITEVENT,
 		

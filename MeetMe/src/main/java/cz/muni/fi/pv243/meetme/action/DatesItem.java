@@ -1,5 +1,9 @@
 package cz.muni.fi.pv243.meetme.action;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class DatesItem {
 	
 	private String label;
@@ -7,10 +11,38 @@ public class DatesItem {
 	private String toTime;
 	private String fromDate;
 	private String toDate;
+	private long id;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public DatesItem() {
 		super();
 	}
+	
+	public DatesItem(Date from, Date to, Long id, String label) {
+		
+		if (from==null || to==null) {
+			return;
+		}
+		
+		GregorianCalendar fromCalendar = new GregorianCalendar();
+		GregorianCalendar toCalendar = new GregorianCalendar();
+		
+		fromCalendar.setTime(from);		
+		toCalendar.setTime(to);
+		fromDate = fromCalendar.get(Calendar.DATE) + "-" + (fromCalendar.get(Calendar.MONTH) + 1) + "-" + fromCalendar.get(Calendar.YEAR);
+		fromTime = fromCalendar.get(Calendar.HOUR_OF_DAY) + ":" + fromCalendar.get(Calendar.SECOND);
+		toDate = toCalendar.get(Calendar.DATE) + "-" + (toCalendar.get(Calendar.MONTH) + 1) + "-" + toCalendar.get(Calendar.YEAR);
+		toTime = toCalendar.get(Calendar.HOUR_OF_DAY) + ":" + toCalendar.get(Calendar.SECOND);
+		
+		this.id = id;
+		this.label = label;
+	}
+	
 	public DatesItem(String label) {
 		super();
 		this.label = label;

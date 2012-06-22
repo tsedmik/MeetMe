@@ -30,7 +30,7 @@ public class PersonAuthorization {
 			return false;
 		}
 	            
-	    return identity.getUser().getId().equals(event.getOwner().getId());
+	    return identity.getUser().getId().equals(event.getOwner().getId().toString());
 	}
 
 }

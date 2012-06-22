@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.jboss.solder.core.Veto;
+
 /**
  * Class represents an event
  * 
@@ -19,13 +21,14 @@ import javax.validation.constraints.Size;
  * @since 03-05-2012
  */
 @Entity
+@Veto
 public class Event implements Serializable {
 
 	private static final long serialVersionUID = 9140396113831392275L;
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	
 	@NotNull
 	@Size(min = 4, max = 100, message = "name - size must be between 4 and 100")
@@ -37,6 +40,7 @@ public class Event implements Serializable {
 	@Size(max = 200, message = "description - size must be max 200")
 	private String place;
 	
+	@ManyToOne
 	private Person owner;
 	
 	@OneToMany(fetch=FetchType.EAGER)
@@ -70,10 +74,10 @@ public class Event implements Serializable {
 		this.emailNotify = emailNotify;
 	}
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -94,8 +98,6 @@ public class Event implements Serializable {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	
-	@ManyToOne
 	public Person getOwner() {
 		return owner;
 	}

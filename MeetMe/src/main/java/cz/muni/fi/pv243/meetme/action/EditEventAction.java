@@ -1,9 +1,10 @@
 package cz.muni.fi.pv243.meetme.action;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.jboss.seam.faces.context.conversation.Begin;
 import org.jboss.seam.faces.context.conversation.End;
@@ -13,8 +14,11 @@ import org.jboss.solder.exception.control.ExceptionHandled;
 @Stateless
 public class EditEventAction {
 	
-	@PersistenceContext
+	@Inject
 	private EntityManager em;
+	
+	@Inject
+	private Event<EventEditedEvent> eventEdited;
 
 	@Begin
 	public void edit() {
@@ -24,6 +28,9 @@ public class EditEventAction {
 	@ExceptionHandled
 	public void save() {
 		em.flush();
+		eventEdited.fire(new EventEditedEvent());
+		
+		//TODO ukladani novych terminu a mazani smazanych
 	}
 
 	@End
