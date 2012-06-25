@@ -40,25 +40,14 @@
 	</navigation-rule>
 	
 	<navigation-rule>
-		<from-view-id>/myevents.xhtml</from-view-id>
-		<navigation-case>
-			<from-action>#{editEventAction.edit}</from-action>
-			<if>#{true}</if>
-			<to-view-id>/editevent.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-action>#{createEventAction.create}</from-action>
-			<if>#{true}</if>
-			<to-view-id>/eventsummary.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	
-	<navigation-rule>
 		<from-view-id>/editevent.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{editEventAction.cancel}</from-action>
+			<if>#{true}</if>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{editEventAction.save}</from-action>
 			<if>#{true}</if>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>

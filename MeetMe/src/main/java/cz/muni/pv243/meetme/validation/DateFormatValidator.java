@@ -57,22 +57,22 @@ public class DateFormatValidator implements Validator {
 				formatter.applyPattern(msg.getString("DateFormatValidator.ValidDate"));
 				throw new ValidatorException(new FacesMessage(formatter.format(messageArguments)));
 			}
-			if (!fromTime.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
-				Object[] messageArguments = {label, msg.getString("eventedit.fromTime")};
+			if (!fromTime.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]?")) {
+				Object[] messageArguments = {label, msg.getString("newevent.fromTime")};
 				MessageFormat formatter = new MessageFormat("");
 				formatter.setLocale(FacesContext.getCurrentInstance().getViewRoot().getLocale());
 				formatter.applyPattern(msg.getString("DateFormatValidator.ValidTime"));
 				throw new ValidatorException(new FacesMessage(formatter.format(messageArguments)));
 			}
 			if (!toDate.matches("^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((19|20)\\d\\d)$")) {
-				Object[] messageArguments = {label, msg.getString("eventedit.toDate")};
+				Object[] messageArguments = {label, msg.getString("newevent.toDate")};
 				MessageFormat formatter = new MessageFormat("");
 				formatter.setLocale(FacesContext.getCurrentInstance().getViewRoot().getLocale());
 				formatter.applyPattern(msg.getString("DateFormatValidator.ValidDate"));
 				throw new ValidatorException(new FacesMessage(formatter.format(messageArguments)));
 			}
-			if (!toTime.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
-				Object[] messageArguments = {label, msg.getString("eventedit.toTime")};
+			if (!toTime.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]?")) {
+				Object[] messageArguments = {label, msg.getString("newevent.toTime")};
 				MessageFormat formatter = new MessageFormat("");
 				formatter.setLocale(FacesContext.getCurrentInstance().getViewRoot().getLocale());
 				formatter.applyPattern(msg.getString("DateFormatValidator.ValidTime"));

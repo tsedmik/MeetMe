@@ -6,13 +6,19 @@
 	xmlns:s="http://jboss.org/seam/faces"
 	template="/WEB-INF/templates/default.xhtml">
 
-
+	<ui:define name="header">
+		<f:metadata>
+        	<f:viewParam name="id" value="#{_eventid}"/>
+            <s:viewAction action="#{currentEventProducer.setEventById(_eventid)}"/>
+            <s:viewAction action="#{editEventAction.edit}"/>
+        </f:metadata>
+	</ui:define>
 	
 	<ui:define name="content">
-		<h1>#{msg['newevent.heading']}</h1>
+		<h1>#{msg['editevent.heading']}</h1>
 		
 		<h:messages/>
-		<h:form>
+		<h:form id="form">
 			<h3>#{msg['newevent.basicSettings']}</h3>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="#{msg['event.name']}" for="name" />
@@ -76,9 +82,9 @@
 				<h:outputText id="secretEvent" value="#{msg['event.secretEvent']}"/>
 			</h:panelGrid>
 
-			<h3>#{msg['newevent.create']}</h3>
-			<h:commandButton action="#{editEventAction.save}" value="Done" />
-			<h:commandButton action="#{editEventAction.cancel}" value="Cancel" />
+			<h3>#{msg['editevent.change']}</h3>
+			<h:commandButton action="#{editEventAction.save}" value="#{msg['editevent.doneButton']}" />
+			<h:commandButton action="#{editEventAction.cancel}" value="#{msg['editevent.cancelButton']}" />
 		</h:form>
 		
 	</ui:define>

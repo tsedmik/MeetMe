@@ -10,20 +10,16 @@
 		<h1>#{msg['myevents.heading']}</h1>
 
 		<h:messages />
+		<h:panelGroup rendered="#{regUserEvents.size() != 0}">
+			<h2>#{msg['myevents.listOfEvents']}</h2>
+		</h:panelGroup>	
 
-		<h2>#{msg['myevents.listOfEvents']}</h2>
-
-		<h:dataTable value="#{regUserEvents}" var="_event">
-			<h:column>
-				<h:commandButton action="#{createEventAction.create}" value="#{msg['myevents.buttonEdit']}">
-					<f:setPropertyActionListener target="#{currentEventProducer.event}" value="#{_event}"/>
-				</h:commandButton>     
-			</h:column>
+		<h:dataTable value="#{regUserEvents}" var="_event" rendered="#{regUserEvents.size() != 0}">
 			<h:column>
 				<f:facet name="header">
 					#{msg['myevents.tableName']}
 				</f:facet>
-				<b> <h:link value="#{_event.name}" outcome="participateAuth">
+				<b> <h:link value="#{_event.name}" outcome="editevent">
 						<f:param name="id" value="#{_event.id}" />
 					</h:link>
 				</b>
@@ -35,6 +31,10 @@
 				#{_event.description}     
 			</h:column>
 		</h:dataTable>
+		
+		<h:panelGroup rendered="#{regUserEvents.size() == 0}">
+			<b>#{msg['myevents.noEvent']} <h:link value="#{msg['myevents.newEvent']}" outcome="newevent"/></b>
+		</h:panelGroup>
 	</ui:define>
 
 	<ui:define name="sidebar">
