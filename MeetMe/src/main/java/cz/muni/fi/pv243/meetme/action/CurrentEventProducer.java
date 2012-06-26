@@ -7,7 +7,6 @@ import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import cz.muni.fi.pv243.meetme.model.Event;
 
@@ -15,13 +14,11 @@ import cz.muni.fi.pv243.meetme.model.Event;
 @Named
 @Stateful
 public class CurrentEventProducer implements Serializable {
-
-	private static final long serialVersionUID = 2L;
 	
 	@Inject
 	CurrentEventUnwrapper eventUnwrapper;
 		
-	@PersistenceContext
+	@Inject
 	EntityManager em;
 	 
 	public void setEvent(Event event) {

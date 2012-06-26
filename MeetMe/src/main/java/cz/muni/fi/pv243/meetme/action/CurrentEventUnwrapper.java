@@ -12,8 +12,6 @@ import cz.muni.fi.pv243.meetme.model.Event;
 
 @ConversationScoped
 public class CurrentEventUnwrapper implements Serializable {
-
-	private static final long serialVersionUID = 1L;
 	
 	private Event event;
 	

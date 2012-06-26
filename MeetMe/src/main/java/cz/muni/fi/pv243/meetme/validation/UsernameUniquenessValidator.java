@@ -1,4 +1,4 @@
-package cz.muni.pv243.meetme.validation;
+package cz.muni.fi.pv243.meetme.validation;
 
 import java.util.ResourceBundle;
 

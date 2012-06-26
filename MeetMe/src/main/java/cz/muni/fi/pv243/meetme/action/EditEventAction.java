@@ -57,20 +57,25 @@ public class EditEventAction {
 		for (int i = 0; i < dates.getItems().size(); i++) {
 			
 			if (dates.getItems().get(i).getId() != null) {
-				oldDates.add(dates.getItems().get(i));
+					oldDates.add(dates.getItems().get(i));
 			} else {
 				if (!dates.getItems().get(i).getFromDate().equals(""))
 					newDates.add(dates.getItems().get(i));
 			}
 		}
 		
-		System.out.println("NEW DATES:" + oldDates.size());
-		System.out.println("OLD DATES:" + newDates.size());
+		System.out.println("OLDDATES: " + oldDates.size());
+		System.out.println("NEWDATES: " + newDates.size());
 		
 		// change old dates in an event
 		for (int i = 0; i < oldDates.size(); i++) {
 			for (int j = 0; j < currentEvent.getDates().size(); j++) {
 				if (oldDates.get(i).getId().equals(currentEvent.getDates().get(j).getId())) {
+					
+					if (oldDates.get(i).getFromDate().equals("")) {
+						currentEvent.getDates().remove(j);
+						break;
+					}
 					
 					String[] tempDate = oldDates.get(i).getFromDate().split("-");
 					String[] tempTime = oldDates.get(i).getFromTime().split(":");
@@ -89,10 +94,10 @@ public class EditEventAction {
 		if (!newDates.isEmpty()) {
 			List<Date> temp = createListOfDates(newDates);
 			persistDates(temp);
-			currentEvent.getDates().addAll(temp);
+			currentEvent.getDates().addAll(temp);		
 		}
 		
-		System.out.println(currentEvent.getDates().size());
+		System.out.println("DATES: " + currentEvent.getDates().size());
 		
 		// persist an event
 		em.flush();

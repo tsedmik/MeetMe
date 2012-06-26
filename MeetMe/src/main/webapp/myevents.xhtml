@@ -13,25 +13,25 @@
 		<h:panelGroup rendered="#{regUserEvents.size() != 0}">
 			<h2>#{msg['myevents.listOfEvents']}</h2>
 		</h:panelGroup>	
-
-		<h:dataTable value="#{regUserEvents}" var="_event" rendered="#{regUserEvents.size() != 0}">
-			<h:column>
-				<f:facet name="header">
-					#{msg['myevents.tableName']}
-				</f:facet>
-				<b> <h:link value="#{_event.name}" outcome="editevent">
-						<f:param name="id" value="#{_event.id}" />
-					</h:link>
-				</b>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					#{msg['myevents.tableDescription']}
-				</f:facet>
-				#{_event.description}     
-			</h:column>
-		</h:dataTable>
-		
+		<h:form rendered="#{regUserEvents.size() != 0}">
+			<h:dataTable value="#{regUserEvents}" var="_event">
+				<h:column>
+					<f:facet name="header">
+						#{msg['myevents.tableName']}
+					</f:facet>
+					<b> <h:link value="#{_event.name}" outcome="editevent">
+							<f:param name="id" value="#{_event.id}" />
+						</h:link>
+					</b>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						#{msg['myevents.tableDescription']}
+					</f:facet>
+					#{_event.description}     
+				</h:column>
+			</h:dataTable>
+		</h:form>
 		<h:panelGroup rendered="#{regUserEvents.size() == 0}">
 			<b>#{msg['myevents.noEvent']} <h:link value="#{msg['myevents.newEvent']}" outcome="newevent"/></b>
 		</h:panelGroup>

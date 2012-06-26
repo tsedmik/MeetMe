@@ -2,6 +2,7 @@ package cz.muni.fi.pv243.meetme.viewconfig;
 
 import org.jboss.seam.faces.event.PhaseIdType;
 import org.jboss.seam.faces.rewrite.UrlMapping;
+import org.jboss.seam.faces.security.AccessDeniedView;
 import org.jboss.seam.faces.security.LoginView;
 import org.jboss.seam.faces.security.RestrictAtPhase;
 import org.jboss.seam.faces.view.config.ViewConfig;
@@ -21,8 +22,9 @@ public interface Pages {
         MYEVENTS,
         
         @ViewPattern("/editevent.xhtml")
+        @AccessDeniedView("/denied.xhtml")
 		@UrlMapping(pattern="/s/#{id}/")
-       // @IsEventOwnerOf
+        //@IsEventOwnerOf
 		@RestrictAtPhase({PhaseIdType.RESTORE_VIEW, PhaseIdType.INVOKE_APPLICATION})
         EDITEVENT,
 		
